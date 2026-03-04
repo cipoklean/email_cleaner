@@ -25,6 +25,7 @@ elif choice == "2":
 else:
     print("Invalid choice")
     exit()
+
 email_ids = [e.decode() for e in messages[0].split()]
 print(f"\nFound {len(email_ids)} emails matching your search!")
 
@@ -42,8 +43,8 @@ for email_id in email_ids[:5]:
 confirm = input(f"\nDelete all {len(email_ids)} emails? (yes/no): ")
 
 if confirm == 'yes':
-    for email_id in email_ids:
-        mail.store(str(email_id), "+FLAGS", "\\Deleted")
+    email_ids_str = ",".join(email_ids)
+    mail.store(str(email_id), "+FLAGS", "\\Deleted")
     mail.expunge()
     print(f"Successfully deleted {len(email_ids)} emails!")
 else:
